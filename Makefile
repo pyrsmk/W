@@ -12,6 +12,6 @@ minify:
 	@rm -f `${OLD}`
 	@echo "/*`${URL}`*/`uglifyjs -nc src/\`${NAME}\`.js`" > `${NAME}`-`${VERSION}`.min.js
 
-install:
+instdeps:
 	@npm install jshint -g
 	@npm install uglify-js -g
