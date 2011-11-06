@@ -1,1 +1,0 @@
-$.ender({W:require('W')});
