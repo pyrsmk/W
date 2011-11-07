@@ -1,5 +1,5 @@
 /*
-    W, width management tool for responsive designers
+    W, width management tool for responsive designs
 
     Version     : 0.1.1
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
