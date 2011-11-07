@@ -16,10 +16,20 @@ Quickly:
 
 And a concrete example:
 
+    if(W(true)>=W(1440)){
+        // some actions for wide screens or shrinked contents
+    }
     // Catch events to update contents when needed
     W(function(){
-        if(W(true)>=W(1440)){
-            // some actions for wide screens or shrinked contents
+        // Refresh stylesheets to force contents adaptation (especially for zooming and text size changing)
+        var links=document.getElementsByTagName('link'),
+            i=-1,
+            element;
+        while(element=links[++i]){
+            if(element.rel=='stylesheet'){
+                element.disabled=true;
+                element.disabled=false;
+            }
         }
     });
 
