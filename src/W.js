@@ -1,8 +1,8 @@
 /*
     W, one width to rule them all
 
-    Version     : 0.1.0
-    Author      : Aurélien Delogu (dev@dreamysource.fr)
+    Version     : 0.1.1
+    Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
     
@@ -10,53 +10,91 @@
     
         http://www.quirksmode.org/mobile/viewports.html
         http://www.quirksmode.org/mobile/tableViewport.html
+        http://www.alistapart.com/articles/fontresizing/
+    
+    Thanks
+    
+        To Lawrence Carvalho (carvalho@uk.yahoo-inc.com) for his useful TextResizeDetector script :)
 */
 
-/*
-    Get viewport width
+this.W=function(){
+
+    var win=window,
+        doc=document,
+        html=doc.documentElement,
+        textelement,
+        textheight,
+        style='style',
+        listeners=[],
+        viewport_width,
+        window_width,
+        a,b;
     
-    Parameters
-        boolean, number, Function spec: if true, return em-based width
-                                        if a number, translate it in ems
-                                        if a function, will be called when the window has been resized
+    /*
+        Main function
+        
+        Parameters
+            boolean, number, Function spec: if true, return em-based window width
+                                            if a number, translate it to ems
+                                            if a function, will be called when the user resizes the window, zooms the contents or changes text size
+        
+        Return
+            integer, null
+    */
+    return function(spec){
+        if(typeof spec=='function'){
+            // Catch window resize event
+            if(a=win.addEventListener){
+                a('resize',spec,false);
+            }
+            else{
+                win.attachEvent('onresize',spec);
+            }
+            // Catch text resize event
+            if(!listeners.length){
+                textelement=doc.createElement('span');
+                textelement[style].position='absolute';
+                textelement[style].left='-999em';
+                textelement.innerHTML='&nbsp;';
+                html.appendChild(textelement);
+                textheight=textelement.offsetHeight;
+                setInterval(function(){
+                    // Trigger text resize event
+                    if(textheight!=(b=textelement.offsetHeight)){
+                        a=listeners.length;
+                        while(a){
+                            listeners[--a]();
+                        }
+                    }
+                    textheight=b;
+                },250);
+            }
+            listeners.push(spec);
+            return;
+        }
+        var unit=1;
+        if(spec){
+            // Calculate em unit
+            a=doc.createElement('div');
+            a[style].width='1em';
+            html.appendChild(a);
+            unit=a.offsetWidth;
+            html.removeChild(a);
+            // Tranlate provided px-based width
+            if(typeof spec=='number'){
+                return spec/unit;
+            }
+        }
+        if(typeof spec!='number'){
+            // Viewport width
+            a=html.offsetWidth;
+            // Window width
+            b=(typeof win.innerWidth)=='number'?
+              win.innerWidth:
+              html.clientWidth;
+            // Guess correct "window" width
+            return ((b-a)*100/b<5?b:a)/unit;
+        }
+    };
     
-    Return
-        integer, null
-*/
-this.W=function(spec){
-    // Catch resize event
-    if(typeof spec=='function'){
-        var addEventListener=window.addEventListener,
-            attachEvent=window.attachEvent;
-        if(addEventListener){
-            addEventListener("resize",spec,false);
-        }
-        else if(attachEvent){
-            attachEvent("onresize",spec);
-        }
-        // Force first call
-        spec();
-        return;
-    }
-    // Calculate em unit
-    var doc=document.documentElement,
-        unit=1;
-    if(spec){
-        var element=document.createElement('div');
-        element.style.width='10em';
-        doc.appendChild(element);
-        unit=element.offsetWidth/10;
-        doc.removeChild(element);
-        // Tranlate provided px-based width
-        if(typeof spec=='number'){
-            return spec/unit;
-        }
-    }
-    // Guess window width
-    if(typeof spec!='number'){
-        var win=window,
-            viewport_width=doc.offsetWidth,
-            window_width=(typeof win.innerWidth)=='number'?win.innerWidth:doc.clientWidth;
-        return ((window_width-viewport_width)*100/window_width<5?window_width:viewport_width)/unit;
-    }
-};
+}();
