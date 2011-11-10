@@ -22,7 +22,7 @@ domReady(function(){
         });
         
         test('Specific width',1,function(){
-            ok(W(1024)==64,'Format px width in ems');
+            ok(W(1024)==64,'Format px width in ems [not optimized to pass with text size changing]');
         });
         
         test('Window width',2,function(){
