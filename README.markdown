@@ -1,7 +1,19 @@
-W 0.1.2
+W 0.1.3
 =======
 
 W is a must needed tool for responsive design developers. Knowing the current width of the viewport is necessary for us as well as catching window resize, zoom or text resize events. Moreover, we also need to deal with em units most of the time. Then, since browsers and devices could be quite different and there's no easy way to get all of that magic stuff: W is born.
+
+Compatibility
+-------------
+
+- IE 6+
+- Chrome
+- Firefox 2+
+- Opera 9+
+- Safari 3+
+
+Syntax
+------
 
 Quickly:
 

@@ -36,6 +36,7 @@ this.W=function(spec){
         textheight,
         style='style',
         listeners=[],
+        unit,
         a,b;
     if(typeof spec=='function'){
         // Catch window resize event
@@ -72,8 +73,9 @@ this.W=function(spec){
     a=doc.createElement('div');
     a[style].width='1em';
     html.appendChild(a);
-    var unit=a.offsetWidth;
-    unit=unit?unit:16; // because IE6/7 returns a zero offsetWidth
+    unit=a.offsetWidth;
+    // --------- because IE6/7 returns a zero offsetWidth
+    unit=unit?unit:16;
     html.removeChild(a);
     // Tranlate provided px-based width
     if(typeof spec=='number'){
