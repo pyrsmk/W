@@ -1,3 +1,7 @@
+/*
+    IE<=8 must be tested against zoom/text-size
+*/
+
 domReady(function(){
 
     log('Please note that these tests won\'t verify correct implementation on mobiles');
@@ -26,11 +30,9 @@ domReady(function(){
         });
         
         test('Window width',2,function(){
-            var width=typeof innerWidth=='number'?
-                      innerWidth:
-                      document.documentElement.clientWidth;
-            ok(W()==width,'Get current window width in pxs');
-            ok(W(true)==W(width),'Get current window width in ems');
+            var width=document.documentElement.clientWidth;
+            ok(W()==W(),'Get current window width in pxs');
+            ok(W(true)==W(W()),'Get current window width in ems');
         });
 
     });

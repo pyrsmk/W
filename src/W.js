@@ -1,7 +1,7 @@
 /*
     W, width management tool for responsive designs
 
-    Version     : 0.1.2
+    Version     : 0.1.3
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
@@ -36,8 +36,6 @@ this.W=function(spec){
         textheight,
         style='style',
         listeners=[],
-        viewport_width,
-        window_width,
         a,b;
     if(typeof spec=='function'){
         // Catch window resize event
@@ -52,10 +50,11 @@ this.W=function(spec){
             textelement=doc.createElement('span');
             textelement[style].position='absolute';
             textelement[style].left='-999em';
-            textelement.innerHTML='&nbsp;';
+            textelement.innerHTML='W';
             html.appendChild(textelement);
             textheight=textelement.offsetHeight;
             setInterval(function(){
+                var a,b;
                 // Trigger text resize event
                 if(textheight!=(b=textelement.offsetHeight)){
                     a=listeners.length;
@@ -69,27 +68,26 @@ this.W=function(spec){
         listeners.push(spec);
         return;
     }
-    var unit=1;
-    if(spec){
-        // Calculate em unit
-        a=doc.createElement('div');
-        a[style].width='1em';
-        html.appendChild(a);
-        unit=a.offsetWidth;
-        html.removeChild(a);
-        // Tranlate provided px-based width
-        if(typeof spec=='number'){
-            return spec/unit;
-        }
+    // Compute em unit
+    a=doc.createElement('div');
+    a[style].width='1em';
+    html.appendChild(a);
+    var unit=a.offsetWidth;
+    unit=unit?unit:16; // because IE6/7 returns a zero offsetWidth
+    html.removeChild(a);
+    // Tranlate provided px-based width
+    if(typeof spec=='number'){
+        return spec/unit;
     }
-    if(typeof spec!='number'){
+    else{
         // Viewport width
         a=html.offsetWidth;
         // Window width
-        b=(typeof win.innerWidth)=='number'?
-          win.innerWidth:
-          html.clientWidth;
-        // Guess correct "window" width
-        return ((b-a)*100/b<5?b:a)/unit;
+        if(!(b=win.innerWidth)){
+            b=html.clientWidth;
+        }
+        // Guess the correct "window" width
+        a=(b-a)*100/b<5?b:a;
+        return spec?a/unit:a;
     }
 };
