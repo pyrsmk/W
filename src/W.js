@@ -1,7 +1,7 @@
 /*
     W, width management tool for responsive designs
 
-    Version     : 0.1.3
+    Version     : 0.1.4
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
@@ -35,10 +35,16 @@ this.W=function(spec){
         textelement,
         textheight,
         style='style',
+        createElement='createElement',
+        appendChild='appendChild',
+        offsetHeight='offsetHeight',
+        offsetWidth='offsetWidth',
         listeners=[],
         unit,
-        a,b;
-    if(typeof spec=='function'){
+        type=typeof spec,
+        a,
+        b;
+    if(type=='function'){
         // Catch window resize event
         if(a=win.addEventListener){
             a('resize',spec,false);
@@ -48,16 +54,15 @@ this.W=function(spec){
         }
         // Catch text resize event
         if(!listeners.length){
-            textelement=doc.createElement('span');
+            textelement=doc[createElement]('span');
             textelement[style].position='absolute';
-            textelement[style].left='-999em';
+            textelement[style].top='-99em';
             textelement.innerHTML='W';
-            html.appendChild(textelement);
-            textheight=textelement.offsetHeight;
-            setInterval(function(){
-                var a,b;
+            html[appendChild](textelement);
+            textheight=textelement[offsetHeight];
+            setInterval(function(a,b){
                 // Trigger text resize event
-                if(textheight!=(b=textelement.offsetHeight)){
+                if(textheight!=(b=textelement[offsetHeight])){
                     a=listeners.length;
                     while(a){
                         listeners[--a]();
@@ -70,20 +75,19 @@ this.W=function(spec){
         return;
     }
     // Compute em unit
-    a=doc.createElement('div');
+    a=doc[createElement]('div');
     a[style].width='1em';
-    html.appendChild(a);
-    unit=a.offsetWidth;
-    // --------- because IE6/7 returns a zero offsetWidth
-    unit=unit?unit:16;
+    html[appendChild](a);
+    unit=a[offsetWidth];
+    unit=unit?unit:16; // because IE6/7 returns a zero offsetWidth
     html.removeChild(a);
     // Tranlate provided px-based width
-    if(typeof spec=='number'){
+    if(type=='number'){
         return spec/unit;
     }
     else{
         // Viewport width
-        a=html.offsetWidth;
+        a=html[offsetWidth];
         // Window width
         if(!(b=win.innerWidth)){
             b=html.clientWidth;
