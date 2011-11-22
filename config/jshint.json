@@ -1,6 +1,6 @@
 {
     "browser"   : true,
-    "predef"    : ["module"],
+    "predef"    : [],
     "boss"      : true,
     "curly"     : true,
     "eqnull"    : true,
