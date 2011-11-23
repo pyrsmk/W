@@ -79,7 +79,7 @@ this.W=function(){
         a[style].width='1em';
         html[appendChild](a);
         unit=a[offsetWidth];
-        unit=unit?unit:16; // because IE6/7 returns a zero offsetWidth
+        unit=unit?unit:16; // 16px as fallback
         html.removeChild(a);
         // Tranlate provided px-based width
         if(type=='number'){

@@ -1,4 +1,4 @@
-W 0.1.3
+W 0.1.5
 =======
 
 W is a must needed tool for responsive design developers. Knowing the current width of the viewport is necessary for us as well as catching window resize, zoom or text resize events. Moreover, we also need to deal with em units most of the time. Then, since browsers and devices could be quite different and there's no easy way to get all of that magic stuff: W is born.
@@ -51,6 +51,10 @@ Notes
 The current relative width will be the viewport width on mobiles and the window width on desktops. With that way, you'll be able to adapt your design accross window sizes, screen sizes, zoom levels and text sizes.
 
 This library is designed to be as small as possible to get the script fast loaded on mobiles, so there will never be ender integration or something like that.
+
+With IE6-8, please consider waiting for readiness before using W because of these issues (but it's not really important...):
+- IE6-7 will report a [zero offsetWidth](https://github.com/pyrsmk/W/issues/1), but, be quiet, W will fallbacks to a 16px default value for em calculation (then, W won't return a realistic em value when text size has been changed)
+- IE8 could [throw an error telling that the parent element can't be modified while a child element is not closed](https://github.com/pyrsmk/W/issues/3)
 
 License
 -------
