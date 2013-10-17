@@ -1,24 +1,21 @@
 /*
     W, width management tool for responsive designs
 
-    Version     : 0.1.6
+    Version     : 0.2.0
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
-    
+
     Some readings
-    
-        http://www.quirksmode.org/mobile/viewports.html
-        http://www.quirksmode.org/mobile/tableViewport.html
         http://www.alistapart.com/articles/fontresizing/
-    
+        http://tripleodeon.com/2011/12/first-understand-your-screen/
+
     Thanks
-    
         To Lawrence Carvalho (carvalho@uk.yahoo-inc.com) for his useful TextResizeDetector script :)
 */
 
 this.W=function(){
-    
+
     var win=window,
         doc=document,
         html=doc.documentElement,
@@ -30,15 +27,15 @@ this.W=function(){
         offsetHeight='offsetHeight',
         offsetWidth='offsetWidth',
         listeners=[];
-    
+
     /*
         Main function
-        
+
         Parameters
             boolean, number, Function spec: if true, return em-based window width
                                             if a number, translate it to ems
                                             if a function, will be called when the user resizes the window, zooms the contents or changes text size
-        
+
         Return
             integer, null
     */
@@ -87,7 +84,7 @@ this.W=function(){
         }
         else{
             // Viewport width
-            a=html[offsetWidth];
+            a=navigator.userAgent.match(/iPhone|iPod|iPad/i)?win.outerWidth:screen.width;
             // Window width
             if(!(b=win.innerWidth)){
                 b=html.clientWidth;
@@ -97,5 +94,5 @@ this.W=function(){
             return spec?a/unit:a;
         }
     };
-    
+
 }();
