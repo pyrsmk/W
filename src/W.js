@@ -1,7 +1,7 @@
 /*
     W, width management tool for responsive designs
 
-    Version     : 0.2.0
+    Version     : 0.3.0
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
@@ -14,7 +14,14 @@
         To Lawrence Carvalho (carvalho@uk.yahoo-inc.com) for his useful TextResizeDetector script :)
 */
 
-this.W=function(){
+(function(def){
+    if(typeof module!='undefined'){
+        module.exports=def;
+    }
+    else{
+        this.W=def;
+    }
+}(function(){
 
     var win=window,
         doc=document,
@@ -95,4 +102,4 @@ this.W=function(){
         }
     };
 
-}();
+}()));

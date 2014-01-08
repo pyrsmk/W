@@ -8,7 +8,7 @@ lint:
 
 minify:
 	rm -f ${NAME}*
-	uglifyjs -nc src/${NAME}.js > ${NAME}-`${VERSION}`.min.js
+	uglifyjs src/${NAME}.js > ${NAME}-`${VERSION}`.min.js
 
 instdeps:
 	npm install jshint -g
