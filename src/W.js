@@ -1,7 +1,7 @@
 /*
     W, width management tool for responsive designs
 
-    Version     : 0.3.0
+    Version     : 0.3.1
     Authors     : Aurélien Delogu (dev@dreamysource.fr)
     Homepage    : https://github.com/pyrsmk/W
     License     : MIT
@@ -15,7 +15,10 @@
 */
 
 (function(def){
-    if(typeof module!='undefined'){
+	if(typeof define=='function'){
+		define(def);
+	}
+    else if(typeof module!='undefined'){
         module.exports=def;
     }
     else{
