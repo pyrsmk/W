@@ -1,5 +1,5 @@
 {
-	"name": "pyrsmk/w",
+	"name": "W",
 	"main": "src/W.js",
 	"description": "Width management tool for responsive designers",
 	"license": "MIT",
