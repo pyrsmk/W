@@ -1,11 +1,20 @@
 {
-	"name": "W",
-	"main": "src/W.js",
-	"description": "Width management tool for responsive designers",
-	"license": "MIT",
-	"author": "Aurélien Delogu",
-	"repository": {
-			"type": "git",
-			"url": "https://github.com/pyrsmk/W.git"
-	}
+  "name": "W",
+  "version": "0.3.4",
+  "description": "Width management tool for responsive designs",
+  "main": "src/W.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pyrsmk/W.git"
+  },
+  "keywords": [
+    "width",
+    "responsive"
+  ],
+  "authors": ["Aurélien Delogu"],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pyrsmk/W/issues"
+  },
+  "homepage": "http://dreamysource.fr/product/w"
 }

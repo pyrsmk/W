@@ -1,0 +1,18 @@
+{
+	"browser"   : true,
+	"predef"    : [
+		"define",
+		"module",
+		"ActiveXObject",
+		"Document",
+		"log"
+	],
+	"boss"      : true,
+	"curly"     : true,
+	"eqnull"    : true,
+	"newcap"    : true,
+	"undef"     : true,
+	"loopfunc"  : true,
+    "evil"      : true,
+    "proto"     : true
+}
