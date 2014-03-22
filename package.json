@@ -1,11 +1,8 @@
 {
   "devDependencies": {
-    "gulp": "~3.5.5",
-    "gulp-uglify": "~0.2.1",
-    "gulp-rename": "~1.2.0",
-    "gulp-clean": "~0.2.4",
-    "rimraf": "~2.2.6",
-    "event-stream": "~3.1.0",
-    "gulp-util": "~2.2.14"
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.9.2",
+    "grunt-contrib-uglify": "~0.4.0"
   }
 }
