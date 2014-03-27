@@ -64,4 +64,4 @@ With IE6-8, please consider waiting for readiness before using W because of thes
 License
 -------
 
-W is licensed under the MIT license.
+W is licensed under the [MIT license](http://dreamysource.mit-license.org).
