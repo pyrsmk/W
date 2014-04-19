@@ -27,8 +27,12 @@ domready(function(){
 
 	test('Window width',function(){
 		expect(1);
-		alert("Is "+W()+" it the right current width?");
 		ok(W(true)==W(W()),'Get current window width in ems');
+	});
+
+	test('Chain listeners',function(){
+		expect(1);
+		ok(typeof W(function(){})=='function','A function is returned as well');
 	});
 
 });

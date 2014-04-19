@@ -12,7 +12,7 @@
 		Thanks to Lawrence Carvalho (carvalho@uk.yahoo-inc.com) for his useful TextResizeDetector script :)
 */
 
-(function(context,definition){
+(function(context,name,definition){
 	if(typeof module!='undefined' && module.exports){
 		module.exports=definition();
 	}
@@ -20,9 +20,9 @@
 		define(definition);
 	}
 	else{
-		context.W=definition();
+		context[name]=definition();
 	}
-}(this,function(){
+}(this,'W',function(){
 
 	var win=window,
 		doc=document,
@@ -36,7 +36,7 @@
 					func();
 				}
 			};
-		};
+		},
 
 	/*
 		Main function
@@ -49,7 +49,7 @@
 		Return
 			Integer, null
 	*/
-	return function(spec){
+	W=function(spec){
 		var type=typeof spec,
 			unit,
 			a,
@@ -82,7 +82,7 @@
 				},250);
 			}
 			listeners.push(spec);
-			return;
+			return W;
 		}
 		// Compute em unit
 		a=doc.createElement('div');
@@ -107,5 +107,7 @@
 			return spec?a/unit:a;
 		}
 	};
+
+	return W;
 
 }));
