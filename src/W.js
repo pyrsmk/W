@@ -24,6 +24,7 @@
 	}
 }(this,'W',function(){
 
+	// Prepare
 	var win=window,
 		doc=document,
 		html=doc.documentElement,
@@ -52,8 +53,7 @@
 	W=function(spec){
 		var type=typeof spec,
 			unit,
-			a,
-			b;
+			a,b;
 		if(type=='function'){
 			// Catch window resize event
 			if(a=win.addEventListener){
@@ -70,15 +70,15 @@
 				textElement.innerHTML='W';
 				html.appendChild(textElement);
 				textHeight=textElement.offsetHeight;
-				setInterval(function(a,b){
+				setInterval(function(a,i,j){
 					// Trigger text resize event
-					if(textHeight!=(b=textElement.offsetHeight)){
-						a=listeners.length;
-						while(a){
-							eventFunc(listeners[--a])();
+					a=textElement.offsetHeight;
+					if(textHeight!=a){
+						for(i=0,j=listeners.length;i<j;++i){
+							eventFunc(listeners[i])();
 						}
 					}
-					textHeight=b;
+					textHeight=a;
 				},250);
 			}
 			listeners.push(spec);
