@@ -17,24 +17,20 @@ domready(function(){
 				ok(true,'Event catched by second listener');
 				start();
 			}
+			alert("The new unit is "+W.px2em(16));
 		});
-	});
-
-	test('Convert pixels to ems',function(){
-		expect(1);
-		ok(W.px2em(1024)==64,'Format px width in ems [not optimized to pass with text size changing]');
 	});
 
 	test('Viewport width',function(){
 		expect(1);
 		alert("This test will automatically pass. Please verify yourself that the following viewport width is valid : "+W.getViewportWidth());
-		ok(true,'Get current window width in ems');
+		ok(true,'Get current viewport width');
 	});
 
 	test('Viewport height',function(){
 		expect(1);
 		alert("This test will automatically pass. Please verify yourself that the following viewport height is valid : "+W.getViewportHeight());
-		ok(true,'Get current window width in ems');
+		ok(true,'Get current viewport height');
 	});
 
 	test('Chain listeners',function(){

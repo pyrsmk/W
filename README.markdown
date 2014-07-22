@@ -37,7 +37,9 @@ $(window).listen('scroll',W.addListener(function(){
 Caveats
 -------
 
-With IE6-8, please consider waiting for readiness before using W because of these issues (but it's not really important...) :
+- zoom events won't change `em` unit in pixels; to be clear, `1em` will always equal to `16px` with zooms, the only way to have a change of this unit is by changing the global text size in the parameters of user's browser; that caveat just affect `px2em()`
+
+With IE6-8, please consider waiting for DOM readiness before using W because of these issues (but it's not really important...) :
 
 - IE6-7 will report a [zero offsetWidth](https://github.com/pyrsmk/W/issues/1), so W will fallbacks to a `16px` default value for `em` calculation (and it won't return a realistic `em` value when text size has been changed)
 - IE8 could [throw an error telling that the parent element can't be modified while a child element is not closed](https://github.com/pyrsmk/W/issues/3)
