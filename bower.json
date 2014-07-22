@@ -1,7 +1,7 @@
 {
   "name": "W",
-  "version": "0.3.6",
-  "description": "Width management tool for responsive designs",
+  "version": "1.0.0",
+  "description": "Viewport management tool for responsive designs",
   "main": "src/W.js",
   "repository": {
     "type": "git",
