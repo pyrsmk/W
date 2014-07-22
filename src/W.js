@@ -39,8 +39,7 @@
 			a.style.width='1em';
 			html.appendChild(a);
 			unit=a.offsetWidth;
-			console.log(unit);
-			unit=unit?unit:16; // 16px as fallback
+			unit=unit?unit:16;
 			html.removeChild(a);
 		};
 	refreshUnit();
