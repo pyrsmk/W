@@ -28,6 +28,7 @@
 	var win=window,
 		doc=document,
 		html=doc.documentElement,
+		a,b,
 		textElement,
 		textHeight,
 		listeners=[],

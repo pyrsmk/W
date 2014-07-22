@@ -1,4 +1,4 @@
-W 1.0.0
+W 1.0.1
 =======
 
 W is a must needed tool for responsive designers. Knowing the current width/height of the viewport is necessary for us as well as catching window resize, zoom or text resize events. Moreover, we often need to deal with `em` units. Since browsers and devices could be quite different and there's no easy way to get all of that magic stuff : W is born.
