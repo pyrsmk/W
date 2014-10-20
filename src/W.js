@@ -34,6 +34,7 @@
 		listeners=[],
 		trigger=false,
 		unit,
+		absolute_mode=false,
 		refreshUnit=function(){
 			a=doc.createElement('div');
 			a.style.width='1em';
@@ -82,34 +83,77 @@
 		}
 	},250);
 
+	// Viewport resolution detection
+	function detectViewport(){
+		// Prepare
+		var screen_width,
+			screen_height,
+			values=[
+				{width:screen.availWidth,height:screen.availHeight},
+				{width:window.outerWidth,height:window.outerHeight},
+				{width:window.innerWidth,height:window.innerHeight}
+			],
+			notes=[],
+			i,j;
+		// Detect right screen resolution (since iOS does not flip values between portrait and landscape)
+		if(screen.width==screen.availWidth || screen.height==screen.availHeight){
+			screen_width=screen.width;
+			screen_height=screen.height;
+		}
+		else{
+			screen_width=screen.height;
+			screen_height=screen.width;
+		}
+		// Absolute mode
+		if(absolute_mode){
+			return {
+				width: screen_width,
+				height: screen_height
+			};
+		}
+		// Relative mode
+		else{
+			// Apply rules
+			for(i=0,j=values.length;i<j;++i){
+				if(values[i].width>screen_width || values[i].height>screen_height){
+					values[i].note=0;
+				}
+				else if(values[i].width<screen_width || values[i].height<screen_height){
+					values[i].note=2+(screen_width-values[i].width)+(screen_height-values[i].height);
+				}
+				else{
+					values[i].note=1;
+				}
+			}
+			// Sort notes
+			values.sort(function(a,b){
+				return b.note-a.note;
+			});
+			// Return the better value
+			return {
+				width: values[0].width,
+				height: values[0].height
+			};
+		}
+	}
+
 	// Define W object
 	return {
 		px2em: function(px){
 			return px/unit;
 		},
 		getViewportWidth: function(){
-			// Viewport width
-			a=navigator.userAgent.match(/iPhone|iPod|iPad/i)?win.outerWidth:screen.width;
-			// Window width
-			if(!(b=win.innerWidth)){
-				b=html.clientWidth;
-			}
-			// Guess the correct width
-			return (b-a)*100/b<5?b:a;
+			return detectViewport().width;
 		},
 		getViewportHeight: function(){
-			// Viewport height
-			a=navigator.userAgent.match(/iPhone|iPod|iPad/i)?win.outerHeight:screen.height;
-			// Window height
-			if(!(b=win.innerHeight)){
-				b=html.clientHeight;
-			}
-			// Guess the correct height
-			return (b-a)*100/b<5?b:a;
+			return detectViewport().height;
 		},
 		addListener: function(func){
 			listeners.push(func);
 			return func;
+		},
+		setAbsoluteMode: function(flag){
+			absolute_mode=!!flag;
 		}
 	};
 

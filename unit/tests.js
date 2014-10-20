@@ -21,21 +21,18 @@ domready(function(){
 		});
 	});
 
-	test('Viewport width',function(){
-		expect(1);
-		alert("This test will automatically pass. Please verify yourself that the following viewport width is valid : "+W.getViewportWidth());
-		ok(true,'Get current viewport width');
-	});
-
-	test('Viewport height',function(){
-		expect(1);
-		alert("This test will automatically pass. Please verify yourself that the following viewport height is valid : "+W.getViewportHeight());
-		ok(true,'Get current viewport height');
-	});
-
 	test('Chain listeners',function(){
 		expect(1);
 		ok(typeof W.addListener(function(){})=='function','A function is returned as well');
+	});
+
+	test('Viewport',function(){
+		expect(2);
+		alert("This test will automatically pass. Please verify that the following RELATIVE resolution is valid : "+W.getViewportWidth()+"x"+W.getViewportHeight());
+		ok(true,'Get viewport resolution (relative)');
+		W.setAbsoluteMode(true);
+		alert("This test will automatically pass. Please verify that the following ABSOLUTE resolution is valid : "+W.getViewportWidth()+"x"+W.getViewportHeight());
+		ok(true,'Get viewport resolution (absolute)');
 	});
 
 });

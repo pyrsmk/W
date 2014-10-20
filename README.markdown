@@ -1,16 +1,9 @@
-W 1.0.1
+W 1.1.0
 =======
 
-W is a must needed tool for responsive designers. Knowing the current width/height of the viewport is necessary for us as well as catching window resize, zoom or text resize events. Moreover, we often need to deal with `em` units. Since browsers and devices could be quite different and there's no easy way to get all of that magic stuff : W is born.
+CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and content should rely to the window to keep consistent, not the screen (per example, on iOS8, on an iPad2, returns `768x1024` in portrait and lanscape).
 
-Compatibility
--------------
-
-- IE 6+
-- Chrome
-- Firefox 2+
-- Opera 9+
-- Safari 3+
+W aims to solve these problems.
 
 Syntax
 ------
@@ -32,6 +25,12 @@ If needed, when you register a listener you can chain `W` to reuse that very sam
 $(window).listen('scroll',W.addListener(function(){
     console.log("Hi! I'm the one who detects scroll and responsive events!");
 }));
+```
+
+For those who want to base W on the screen resolution (to unify JS and CSS behaviors, per example), you can toggle the following flag :
+
+```javascript
+W.setAbsoluteMode(true); // false by default
 ```
 
 Caveats
