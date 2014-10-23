@@ -42,6 +42,9 @@
 			unit=a.offsetWidth;
 			unit=unit?unit:16;
 			html.removeChild(a);
+		},
+		getOrientation=function(){
+			return html.clientWidth>html.clientHeight?'landscape':'portrait';
 		};
 	refreshUnit();
 
@@ -95,8 +98,8 @@
 			],
 			notes=[],
 			i,j;
-		// Detect right screen resolution (since iOS does not flip values between portrait and landscape)
-		if(screen.width==screen.availWidth || screen.height==screen.availHeight){
+		// Detect right screen resolution from orientation
+		if(getOrientation()=='portrait'){
 			screen_width=screen.width;
 			screen_height=screen.height;
 		}
@@ -115,7 +118,7 @@
 		else{
 			// Apply rules
 			for(i=0,j=values.length;i<j;++i){
-				if(values[i].width>screen_width || values[i].height>screen_height){
+				if(values[i].width>screen_width || values[i].height>screen_height || !values[i].width || !values[i].height){
 					values[i].note=0;
 				}
 				else if(values[i].width<screen_width || values[i].height<screen_height){
@@ -154,6 +157,9 @@
 		},
 		setAbsoluteMode: function(flag){
 			absolute_mode=!!flag;
+		},
+		getOrientation: function(){
+			return getOrientation();
 		}
 	};
 
