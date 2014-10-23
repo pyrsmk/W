@@ -5,10 +5,17 @@ CSS media queries are a powerful tool to deal with responsive designs : the brow
 
 W aims to solve these problems.
 
+Hey, that's new!
+----------------
+
+My routines have been coded from scratch and I can detect much more devices than before. And I can detect device orientation too! Thanks a lot to all the people that have participated to the recent wide tests ;)
+
 Syntax
 ------
 
 ```javascript
+// Get the orientation of the device (return 'portrait' or 'landscape')
+W.getOrientation();
 // Get the current viewport width
 W.getViewportWidth();
 // Get the current viewport height
@@ -17,8 +24,6 @@ W.getViewportHeight();
 W.px2em(768);
 // Add a listener to catch responsive events
 W.addListener(function(){});
-// Get the orientation of the device (return 'portrait' or 'landscape')
-W.getOrientation();
 ```
 
 If needed, when you register a listener you can chain `W` to reuse that very same function :
