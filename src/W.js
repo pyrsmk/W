@@ -44,15 +44,27 @@
 			html.removeChild(a);
 		},
 		getOrientation=function(){
-			return html.clientWidth>html.clientHeight?'landscape':'portrait';
+			if('orientation' in window){
+				return !window.orientation?'portrait':'landscape';
+			}
+			else{
+				return html.clientWidth>html.clientHeight?'landscape':'portrait';
+			}
 		};
 	refreshUnit();
 
 	// Catch window resize event
 	if(win.addEventListener){
-		win.addEventListener('resize',function(){
-			trigger=true;
-		},false);
+		if('onorientationchange' in win){
+			win.addEventListener('orientationchange',function(){
+				trigger=true;
+			},false);
+		}
+		else{
+			win.addEventListener('resize',function(){
+				trigger=true;
+			},false);
+		}
 	}
 	else{
 		win.attachEvent('onresize',function(){
