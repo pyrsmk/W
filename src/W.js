@@ -99,13 +99,13 @@
 			notes=[],
 			i,j;
 		// Detect right screen resolution from orientation
-		if(getOrientation()=='portrait'){
-			screen_width=screen.width;
-			screen_height=screen.height;
-		}
-		else{
+		if(/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && getOrientation()=='landscape'){
 			screen_width=screen.height;
 			screen_height=screen.width;
+		}
+		else{
+			screen_width=screen.width;
+			screen_height=screen.height;
 		}
 		// Absolute mode
 		if(absolute_mode){
