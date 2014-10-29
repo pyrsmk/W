@@ -1,6 +1,5 @@
 {
   "name": "W",
-  "version": "1.2.1",
   "description": "Viewport management tool for responsive designs",
   "main": "src/W.js",
   "repository": {
