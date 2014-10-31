@@ -1,6 +1,6 @@
 {
   "name": "W",
-  "description": "Viewport management tool for responsive designs",
+  "description": "Responsive viewport management tool",
   "main": "src/W.js",
   "repository": {
     "type": "git",
@@ -8,6 +8,9 @@
   },
   "keywords": [
     "width",
+    "height",
+    "viewport",
+    "screen",
     "responsive"
   ],
   "authors": ["Aurélien Delogu"],
@@ -15,5 +18,6 @@
   "bugs": {
     "url": "https://github.com/pyrsmk/W/issues"
   },
-  "homepage": "http://dreamysource.fr/product/w"
+  "homepage": "http://dreamysource.fr/product/w",
+  "ignore": [".git"]
 }

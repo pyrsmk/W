@@ -5,6 +5,16 @@ CSS media queries are a powerful tool to deal with responsive designs : the brow
 
 W aims to solve these problems.
 
+Install
+-------
+
+You can pick the minified library or install it with :
+
+```
+bower install pyrsmk-w
+npm install pyrsmk-w --save-dev
+```
+
 Hey, that's new!
 ----------------
 
