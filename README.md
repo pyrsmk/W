@@ -11,6 +11,7 @@ Install
 You can pick the minified library or install it with :
 
 ```
+jam install pyrsmk-w
 bower install pyrsmk-w
 npm install pyrsmk-w --save-dev
 ```

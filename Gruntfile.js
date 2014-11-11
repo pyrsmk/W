@@ -33,6 +33,9 @@ module.exports = function(grunt) {
 		},
 		// Minify
 		uglify: {
+			options: {
+				preserveComments: 'some'
+			},
 			library: {
 				files: {
 					'<%= bower.name %>.min.js': ['src/*.js']
@@ -58,6 +61,9 @@ module.exports = function(grunt) {
 			},
 			npm: {
 				command: 'npm publish'
+			},
+			jam: {
+				command: 'jam publish'
 			}
 		}
 	});
