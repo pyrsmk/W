@@ -1,16 +1,4 @@
-/*
-	Width management tool for responsive designs
-
-	Author
-		Aurélien Delogu (dev@dreamysource.fr)
-
-	Some readings
-		http://www.alistapart.com/articles/fontresizing/
-		http://tripleodeon.com/2011/12/first-understand-your-screen/
-
-	Notes
-		Thanks to Lawrence Carvalho (carvalho@uk.yahoo-inc.com) for his useful TextResizeDetector script :)
-*/
+/* W 1.2.2 (https://github.com/pyrsmk/W) */
 
 ;(function(context,name,definition){
 	if(typeof module!='undefined' && module.exports){
