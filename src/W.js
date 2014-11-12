@@ -1,4 +1,4 @@
-/*! W 1.2.2 (https://github.com/pyrsmk/W) */
+/*! W 1.2.3 (https://github.com/pyrsmk/W) */
 
 ;(function(context,name,definition){
 	if(typeof module!='undefined' && module.exports){
@@ -102,6 +102,8 @@
 		if(/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && getOrientation()=='landscape'){
 			screen_width=screen.height;
 			screen_height=screen.width;
+			// Override window.innerWidth (generally equals to 980)
+			values[2].width=screen_width;
 		}
 		else{
 			screen_width=screen.width;
@@ -121,11 +123,8 @@
 				if(values[i].width>screen_width || values[i].height>screen_height || !values[i].width || !values[i].height){
 					values[i].note=0;
 				}
-				else if(values[i].width<screen_width || values[i].height<screen_height){
-					values[i].note=2+(screen_width-values[i].width)+(screen_height-values[i].height);
-				}
 				else{
-					values[i].note=1;
+					values[i].note=(screen_width-values[i].width)+(screen_height-values[i].height);
 				}
 			}
 			// Sort notes
