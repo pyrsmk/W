@@ -30,8 +30,7 @@ domready(function(){
 		expect(3);
 		alert("This test will automatically pass. Please verify that the following RELATIVE resolution is valid : "+W.getViewportWidth()+"x"+W.getViewportHeight());
 		ok(true,'Get viewport resolution (relative)');
-		W.setAbsoluteMode(true);
-		alert("This test will automatically pass. Please verify that the following ABSOLUTE resolution is valid : "+W.getViewportWidth()+"x"+W.getViewportHeight());
+		alert("This test will automatically pass. Please verify that the following ABSOLUTE resolution is valid : "+W.getViewportWidth(true)+"x"+W.getViewportHeight(true));
 		ok(true,'Get viewport resolution (absolute)');
 		alert("This test will automatically pass. Please verify that the following orientation is valid : "+W.getOrientation());
 		ok(true,'Verify orientation');
