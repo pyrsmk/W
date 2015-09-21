@@ -61,7 +61,7 @@
 			unit = textWidth / a * unit;
 			textWidth = a;
 			for(var i=0, j=listeners.length; i<j; ++i) {
-				listeners[i]();
+				listeners[i].func();
 			}
 			trigger = false;
 		}
@@ -144,9 +144,20 @@
 		getOrientation: function() {
 			return getOrientation();
 		},
-		addListener: function(func) {
-			listeners.push(func);
+		addListener: function(func, key) {
+			listeners.push({
+				func: func,
+				key: key
+			});
 			return func;
+		},
+		removeListener: function(key) {
+			for(var i=0, j=listeners.length; i<j; ++i) {
+				if(listeners[i].key == key) {
+					listeners.splice(i, 1);
+					break;
+				}
+			}
 		}
 	};
 
