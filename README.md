@@ -20,6 +20,8 @@ Notes about 1.3 release
 -----------------------
 
 - `setAbsoluteMode()` has been removed
+- `px2em()` has been fixed
+- `removeListener()` has been added
 
 Syntax
 ------
