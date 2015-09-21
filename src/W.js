@@ -58,9 +58,10 @@
 	}
 
 	// Initialize the text element to catch text resizes
-	textElement = document.createElement('span');
-	textElement.style.position = 'absolute';
-	textElement.style.top = '-99em';
+	textElement = document.createElement('p');
+	textElement.style.textIndent = '100%';
+	textElement.style.whiteSpace = 'nowrap';
+	textElement.style.overflow = 'hidden';
 	textElement.innerHTML = 'W';
 	html.appendChild(textElement);
 	textHeight = textElement.offsetHeight;
