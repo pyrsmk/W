@@ -11,20 +11,20 @@ Install
 You can pick the minified library or install it with :
 
 ```
-jam install pyrsmk-w
+npm install pyrsmk-w
 bower install pyrsmk-w
-npm install pyrsmk-w --save-dev
+jam install pyrsmk-w
 ```
 
-Hey, that's new!
-----------------
+Notes about 1.3 release
+-----------------------
 
-My routines have been coded from scratch and I can detect much more devices than before. And I can detect device orientation too! Thanks a lot to all the people that have participated to the recent wide tests ;)
+- `setAbsoluteMode()` has been removed
 
 Syntax
 ------
 
-```javascript
+```js
 // Get the orientation of the device (return 'portrait' or 'landscape')
 W.getOrientation();
 // Get the current viewport width
@@ -39,16 +39,24 @@ W.addListener(function(){});
 
 If needed, when you register a listener you can chain `W` to reuse that very same function :
 
-```javascript
+```js
 $(window).listen('scroll',W.addListener(function(){
     console.log("Hi! I'm the one who detects scroll and responsive events!");
 }));
 ```
 
-For those who want to base W on the screen resolution (to unify JS and CSS behaviors, per example), you can toggle the following flag :
+If needed you can retrieve viewport's width/height in absolute mode (eg. screen resolution) to unify JS and CSS behaviors, per example :
 
-```javascript
-W.setAbsoluteMode(true); // false by default
+```js
+W.getViewportWidth(true);
+W.getViewportHeight(true);
+```
+
+You can remove a listener by passing an optional key to the `addListener()` method :
+
+```js
+W.addListener(function(){}, 'mylistener');
+W.removeListener('myslistener');
 ```
 
 Caveats
