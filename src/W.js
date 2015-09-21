@@ -16,28 +16,11 @@
 	var html = document.documentElement,
 		a, b,
 		textElement,
-		textHeight,
+		textWidth,
 		listeners = [],
 		trigger = false,
-		unit,
-		refreshUnit = function() {
-			a = document.createElement('div');
-			a.style.width = '1em';
-			html.appendChild(a);
-			unit = a.offsetWidth;
-			unit = unit ? unit : 16;
-			html.removeChild(a);
-		},
-		getOrientation = function() {
-			if('orientation' in window) {
-				return !window.orientation ? 'portrait' : 'landscape';
-			}
-			else{
-				return html.clientWidth > html.clientHeight ? 'landscape' : 'portrait';
-			}
-		};
-	refreshUnit();
-
+		unit = 16;
+	
 	// Catch window resize event
 	if(window.addEventListener) {
 		if('onorientationchange' in window) {
@@ -64,19 +47,19 @@
 	textElement.style.overflow = 'hidden';
 	textElement.innerHTML = 'W';
 	html.appendChild(textElement);
-	textHeight = textElement.offsetHeight;
+	textWidth = textElement.offsetWidth;
 
 	// Verify resizes every 10ms
 	setInterval(function() {
 		// Verify text element state
-		a = textElement.offsetHeight;
-		if(a != textHeight){
+		a = textElement.offsetWidth;
+		if(a != textWidth){
 			trigger = true;
 		}
-		textHeight = a;
 		// Text has been resized
 		if(trigger && html.clientWidth) {
-			refreshUnit();
+			unit = textWidth / a * unit;
+			textWidth = a;
 			for(var i=0, j=listeners.length; i<j; ++i) {
 				listeners[i]();
 			}
@@ -84,6 +67,16 @@
 		}
 	}, 10);
 
+	// Get screen orientation
+	function getOrientation() {
+		if('orientation' in window) {
+			return !window.orientation ? 'portrait' : 'landscape';
+		}
+		else{
+			return html.clientWidth > html.clientHeight ? 'landscape' : 'portrait';
+		}
+	}
+	
 	// Viewport resolution detection
 	function detectViewport(absolute) {
 		// Prepare
@@ -137,7 +130,7 @@
 		}
 	}
 
-	// Define W object
+	// Return W object
 	return {
 		px2em: function(px) {
 			return px / unit;
