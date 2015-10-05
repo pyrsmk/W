@@ -1,4 +1,4 @@
-/*! W 1.3.1 (https://github.com/pyrsmk/W) */
+/*! W 1.3.2 (https://github.com/pyrsmk/W) */
 
 ;(function(context, name, definition) {
 	if(typeof module!='undefined' && module.exports) {
@@ -46,6 +46,7 @@
 	textElement.style.textIndent = '100%';
 	textElement.style.whiteSpace = 'nowrap';
 	textElement.style.overflow = 'hidden';
+	textElement.style.color = 'transparent';
 	textElement.innerHTML = 'W';
 	html.appendChild(textElement);
 	textWidth = textElement.offsetWidth;
