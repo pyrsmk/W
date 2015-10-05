@@ -89,7 +89,6 @@
 				{width: window.outerWidth, height: window.outerHeight},
 				{width: window.innerWidth, height: window.innerHeight}
 			],
-			notes = [],
 			i, j;
 		// Detect right screen resolution from orientation
 		if(/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && getOrientation() == 'landscape') {
