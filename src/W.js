@@ -1,4 +1,4 @@
-/*! W 1.3.0 (https://github.com/pyrsmk/W) */
+/*! W 1.3.1 (https://github.com/pyrsmk/W) */
 
 ;(function(context, name, definition) {
 	if(typeof module!='undefined' && module.exports) {
@@ -42,6 +42,7 @@
 
 	// Initialize the text element to catch text resizes
 	textElement = document.createElement('p');
+	textElement.style.position = 'absolute';
 	textElement.style.textIndent = '100%';
 	textElement.style.whiteSpace = 'nowrap';
 	textElement.style.overflow = 'hidden';
