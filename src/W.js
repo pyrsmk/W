@@ -1,4 +1,4 @@
-/*! W 1.3.2 (https://github.com/pyrsmk/W) */
+/*! W 1.3.3 (https://github.com/pyrsmk/W) */
 
 ;(function(context, name, definition) {
 	if(typeof module!='undefined' && module.exports) {
