@@ -1,4 +1,4 @@
-/*! W 1.3.4 (https://github.com/pyrsmk/W) */
+/*! W 1.3.5 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var html = document.documentElement,
