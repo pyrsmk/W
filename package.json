@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/pyrsmk/W.git"
   },
-  "main": "W.min.js",
+  "main": "src/W.js",
   "keywords": [
     "width",
     "height",
