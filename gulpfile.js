@@ -8,7 +8,7 @@ var fs = require('fs'),
 	shell = require('gulp-shell'),
 	umd = require('gulp-umd');
 
-var version = fs.readFileSync('src/W.js', {encoding:'utf8'}).match(/^\/\*\! \w+ ([0-9.]+)/)[1];
+var version = fs.readFileSync('src/W.js', {encoding:'utf8'}).match(/^\/\*\! [\w-]+ ([0-9.]+)/)[1];
 
 // ======================================== gulp version
 
