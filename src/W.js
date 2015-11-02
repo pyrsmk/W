@@ -1,9 +1,7 @@
-/*! W 1.3.5 (https://github.com/pyrsmk/W) */
+/*! W 1.3.6 (https://github.com/pyrsmk/W) */
 
 // Prepare
-var html = document.documentElement,
-	a, b,
-	textElement,
+var textElement,
 	textWidth,
 	listeners = [],
 	trigger = false,
@@ -36,20 +34,26 @@ textElement.style.whiteSpace = 'nowrap';
 textElement.style.overflow = 'hidden';
 textElement.style.color = 'transparent';
 textElement.innerHTML = 'W';
-html.appendChild(textElement);
+if(document.body.children.length) {
+	document.body.insertBefore(textElement, document.body.children[0]);
+}
+else {
+	document.body.appendChild(textElement);
+}
+node.insertBefore(this.node, this.children()[0].node);
 textWidth = textElement.offsetWidth;
 
 // Verify resizes every 10ms
 setInterval(function() {
 	// Verify text element state
-	a = textElement.offsetWidth;
-	if(a != textWidth){
+	var width = textElement.offsetWidth;
+	if(width != textWidth){
 		trigger = true;
 	}
 	// Text has been resized
 	if(trigger && html.clientWidth) {
-		unit = textWidth / a * unit;
-		textWidth = a;
+		unit = textWidth / width * unit;
+		textWidth = width;
 		for(var i=0, j=listeners.length; i<j; ++i) {
 			listeners[i].func();
 		}
