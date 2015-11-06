@@ -1,4 +1,4 @@
-/*! W 1.3.6 (https://github.com/pyrsmk/W) */
+/*! W 1.3.7 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var textElement,
@@ -40,7 +40,6 @@ if(document.body.children.length) {
 else {
 	document.body.appendChild(textElement);
 }
-node.insertBefore(this.node, this.children()[0].node);
 textWidth = textElement.offsetWidth;
 
 // Verify resizes every 10ms
