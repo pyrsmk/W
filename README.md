@@ -58,7 +58,7 @@ You can remove a listener by passing an optional key to the `addListener()` meth
 
 ```js
 W.addListener(function(){}, 'mylistener');
-W.removeListener('myslistener');
+W.removeListener('mylistener');
 ```
 
 Caveats
