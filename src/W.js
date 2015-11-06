@@ -1,4 +1,4 @@
-/*! W 1.3.7 (https://github.com/pyrsmk/W) */
+/*! W 1.3.8 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var textElement,
@@ -50,7 +50,7 @@ setInterval(function() {
 		trigger = true;
 	}
 	// Text has been resized
-	if(trigger && html.clientWidth) {
+	if(trigger && document.documentElement.clientWidth) {
 		unit = textWidth / width * unit;
 		textWidth = width;
 		for(var i=0, j=listeners.length; i<j; ++i) {
@@ -66,7 +66,7 @@ function getOrientation() {
 		return !window.orientation ? 'portrait' : 'landscape';
 	}
 	else{
-		return html.clientWidth > html.clientHeight ? 'landscape' : 'portrait';
+		return document.documentElement.clientWidth > document.documentElement.clientHeight ? 'landscape' : 'portrait';
 	}
 }
 
