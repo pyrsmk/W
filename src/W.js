@@ -1,11 +1,8 @@
-/*! W 1.3.9 (https://github.com/pyrsmk/W) */
+/*! W 1.4.0 (https://github.com/pyrsmk/W) */
 
 // Prepare
-var textElement,
-	textWidth,
-	listeners = [],
-	trigger = false,
-	unit = 16;
+var listeners = [],
+	trigger = false;
 
 // Catch window resize event
 if(window.addEventListener) {
@@ -26,25 +23,9 @@ else{
 	});
 }
 
-// Initialize the text element to catch text resizes
-textElement = document.createElement('p');
-textElement.style.position = 'absolute';
-textElement.style.visibility = 'hidden';
-textElement.innerHTML = 'W';
-document.body.appendChild(textElement);
-textWidth = textElement.offsetWidth;
-
 // Verify resizes every 10ms
 setInterval(function() {
-	// Verify text element state
-	var width = textElement.offsetWidth;
-	if(width != textWidth){
-		trigger = true;
-	}
-	// Text has been resized
 	if(trigger && document.documentElement.clientWidth) {
-		unit = textWidth / width * unit;
-		textWidth = width;
 		for(var i=0, j=listeners.length; i<j; ++i) {
 			listeners[i].func();
 		}
@@ -116,9 +97,6 @@ function detectViewport(absolute) {
 
 // Return W object
 return {
-	px2em: function(px) {
-		return px / unit;
-	},
 	getViewportWidth: function(absolute) {
 		return detectViewport(absolute).width;
 	},

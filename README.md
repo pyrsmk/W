@@ -1,7 +1,7 @@
-W 1.3.9
+W 1.4.0
 =======
 
-CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and content should rely to the window to keep consistent, not the screen (per example, on iOS8, on an iPad2, returns `768x1024` in portrait and lanscape).
+CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and contents should rely on the window to keep consistent, not on the screen (per example, on iOS8, an iPad2 returns `768x1024` in portrait AND lanscape mode).
 
 W aims to solve these problems.
 
@@ -16,10 +16,15 @@ bower install pyrsmk-w
 jam install pyrsmk-w
 ```
 
+Notes about 1.4 version
+-----------------------
+
+`px2em()` and its internal routine have been completely dropped. Dealing with EMs in JavaScript isn't that useful and the element that handled the PX to EM computing always broke the layout since `position: absolute` prevents the element to be affected by the zoom.
+
+If you need that functionnality, please open a new ticket and we'll see what can be done. In all cases, be careful when updating to 1.4.
+
 Syntax
 ------
-
-Please always load W at the end of your HTML page or when the DOM is ready. Here's the API :
 
 ```js
 // Get the orientation of the device (return 'portrait' or 'landscape')
@@ -28,8 +33,6 @@ W.getOrientation();
 W.getViewportWidth();
 // Get the current viewport height
 W.getViewportHeight();
-// Convert pixels to ems (based on the current browser text size)
-W.px2em(768);
 // Add a listener to catch responsive events
 W.addListener(function(){});
 ```
@@ -37,7 +40,7 @@ W.addListener(function(){});
 If needed, when you register a listener you can chain `W` to reuse that very same function :
 
 ```js
-$(window).listen('scroll',W.addListener(function(){
+$(window).listen('scroll', W.addListener(function() {
     console.log("Hi! I'm the one who detects scroll and responsive events!");
 }));
 ```

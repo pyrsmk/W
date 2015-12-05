@@ -16,7 +16,6 @@ QUnit.test('Events', function(assert) {
 			assert.ok(true, 'Event catched by second listener');
 			done();
 		}
-		alert("16px = " + W.px2em(16) + "em");
 	});
 });
 
