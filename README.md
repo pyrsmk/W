@@ -1,4 +1,4 @@
-W 1.3.8
+W 1.3.9
 =======
 
 CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and content should rely to the window to keep consistent, not the screen (per example, on iOS8, on an iPad2, returns `768x1024` in portrait and lanscape).
@@ -16,15 +16,10 @@ bower install pyrsmk-w
 jam install pyrsmk-w
 ```
 
-Notes about 1.3 release
------------------------
-
-- `setAbsoluteMode()` has been removed
-- `px2em()` has been fixed
-- `removeListener()` has been added
-
 Syntax
 ------
+
+Please always load W at the end of your HTML page or when the DOM is ready. Here's the API :
 
 ```js
 // Get the orientation of the device (return 'portrait' or 'landscape')
@@ -66,11 +61,6 @@ Caveats
 
 - under iOS5 (and maybe 6), W will always return `portrait` as device orientation; the values that iOS return are really weird and I found no way to guess the orientation
 - zoom events won't change `em` unit in pixels; to be clear, `1em` will always equal to `16px` with zooms, the only way to have a change of this unit is by changing the global text size in the parameters of user's browser; that caveat just affect `px2em()`
-
-With IE6-8, please consider waiting for DOM readiness before using W because of these issues (but it's not really important...) :
-
-- IE6-7 will report a [zero offsetWidth](https://github.com/pyrsmk/W/issues/1), so W will fallbacks to a `16px` default value for `em` calculation (and it won't return a realistic `em` value when text size has been changed)
-- IE8 could [throw an error telling that the parent element can't be modified while a child element is not closed](https://github.com/pyrsmk/W/issues/3)
 
 License
 -------

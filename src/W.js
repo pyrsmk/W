@@ -1,4 +1,4 @@
-/*! W 1.3.8 (https://github.com/pyrsmk/W) */
+/*! W 1.3.9 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var textElement,
@@ -29,17 +29,9 @@ else{
 // Initialize the text element to catch text resizes
 textElement = document.createElement('p');
 textElement.style.position = 'absolute';
-textElement.style.textIndent = '100%';
-textElement.style.whiteSpace = 'nowrap';
-textElement.style.overflow = 'hidden';
-textElement.style.color = 'transparent';
+textElement.style.visibility = 'hidden';
 textElement.innerHTML = 'W';
-if(document.body.children.length) {
-	document.body.insertBefore(textElement, document.body.children[0]);
-}
-else {
-	document.body.appendChild(textElement);
-}
+document.body.appendChild(textElement);
 textWidth = textElement.offsetWidth;
 
 // Verify resizes every 10ms
