@@ -37,6 +37,7 @@ gulp.task('build', ['version'], function() {
 		}) )
 		.pipe( jshint.reporter('jshint-stylish') )
 		.pipe( umd() )
+		.pipe( gulp.dest('.') )
 		.pipe( uglify() )
 		.pipe( rename({suffix:'.min'}) )
 		.pipe( gulp.dest('.') );

@@ -1,3 +1,12 @@
+;(function(root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define([], factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.W = factory();
+  }
+}(this, function() {
 /*! W 1.4.1 (https://github.com/pyrsmk/W) */
 
 // Prepare
@@ -122,3 +131,6 @@ return {
 		}
 	}
 };
+
+return W;
+}));

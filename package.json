@@ -1,13 +1,13 @@
 {
   "name": "pyrsmk-w",
   "description": "Responsive viewport management tool",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "Aurélien Delogu <pyrsmk@dreamysource.fr> (http://dreamysource.fr)",
   "repository": {
     "type": "git",
     "url": "https://github.com/pyrsmk/W.git"
   },
-  "main": "src/W.js",
+  "main": "W.js",
   "keywords": [
     "width",
     "height",
