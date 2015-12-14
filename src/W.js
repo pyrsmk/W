@@ -1,4 +1,4 @@
-/*! W 1.4.1 (https://github.com/pyrsmk/W) */
+/*! W 1.4.2 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
@@ -95,8 +95,8 @@ function detectViewport(absolute) {
 	}
 }
 
-// Return W object
-return {
+// Define W object
+var W = {
 	getViewportWidth: function(absolute) {
 		return detectViewport(absolute).width;
 	},
