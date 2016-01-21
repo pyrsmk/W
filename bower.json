@@ -1,7 +1,7 @@
 {
   "name": "W",
   "description": "Responsive viewport management tool",
-  "main": "src/W.js",
+  "main": "W.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/pyrsmk/W.git"

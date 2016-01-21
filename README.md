@@ -1,4 +1,4 @@
-W 1.4.2
+W 1.5.0
 =======
 
 CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and contents should rely on the window to keep consistent, not on the screen (per example, on iOS8, an iPad2 returns `768x1024` in portrait AND lanscape mode).
@@ -16,13 +16,6 @@ bower install pyrsmk-w
 jam install pyrsmk-w
 ```
 
-Notes about 1.4 version
------------------------
-
-`px2em()` and its internal routine have been completely dropped. Dealing with EMs in JavaScript isn't that useful and the element that handled the PX to EM computing always broke the layout since `position: absolute` prevents the element to be affected by the zoom.
-
-If you need that functionnality, please open a new ticket and we'll see what can be done. In all cases, be careful when updating to 1.4.
-
 Syntax
 ------
 
@@ -33,11 +26,15 @@ W.getOrientation();
 W.getViewportWidth();
 // Get the current viewport height
 W.getViewportHeight();
-// Add a listener to catch responsive events
-W.addListener(function(){});
+// Add a listener to catch responsive events (key is optional)
+W.addListener(function(){}, 'key');
+// Remove a listener
+W.removeListener('key');
+// Clear all listeners
+W.clearListeners();
 ```
 
-If needed, when you register a listener you can chain `W` to reuse that very same function :
+For ease of use, when you register a listener you can chain `W` to reuse that very same function :
 
 ```js
 $(window).listen('scroll', W.addListener(function() {
@@ -45,19 +42,20 @@ $(window).listen('scroll', W.addListener(function() {
 }));
 ```
 
-If needed you can retrieve viewport's width/height in absolute mode (eg. screen resolution) to unify JS and CSS behaviors, per example :
+You can retrieve viewport's width/height in absolute mode (eg. screen resolution) to unify JS and CSS behaviors :
 
 ```js
 W.getViewportWidth(true);
 W.getViewportHeight(true);
 ```
 
-You can remove a listener by passing an optional key to the `addListener()` method :
+If needed, you can trigger your listeners on demand :
 
 ```js
-W.addListener(function(){}, 'mylistener');
-W.removeListener('mylistener');
-```
+// Trigger all listeners
+W.trigger();
+// Trigger the 'key' listener
+W.trigger('key');
 
 Caveats
 -------

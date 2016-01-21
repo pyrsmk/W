@@ -1,3 +1,16 @@
+QUnit.test('Manual triggering', function(assert) {
+	assert.expect(3);
+	W.addListener(function() {
+		assert.ok(true, 'First callback');
+	}, 'test');
+	W.addListener(function() {
+		assert.ok(true, 'Second callback');
+	});
+	W.trigger('test');
+	W.trigger();
+	W.clearListeners();
+});
+
 QUnit.test('Events', function(assert) {
 	var done = assert.async();
 	assert.expect(2);
@@ -7,13 +20,13 @@ QUnit.test('Events', function(assert) {
 	W.addListener(function() {
 		if(!first) {
 			first = true;
-			assert.ok(true, 'Event catched by first listener');
+			assert.ok(true, 'Event catched by the first listener');
 		}
 	});
 	W.addListener(function() {
 		if(!second) {
 			second = true;
-			assert.ok(true, 'Event catched by second listener');
+			assert.ok(true, 'Event catched by the second listener');
 			done();
 		}
 	});

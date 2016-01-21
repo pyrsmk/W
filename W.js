@@ -7,7 +7,7 @@
     root.W = factory();
   }
 }(this, function() {
-/*! W 1.4.2 (https://github.com/pyrsmk/W) */
+/*! W 1.5.0 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
@@ -127,6 +127,16 @@ var W = {
 			if(listeners[i].key == key) {
 				listeners.splice(i, 1);
 				break;
+			}
+		}
+	},
+	clearListeners: function() {
+		listeners = [];
+	},
+	trigger: function(key) {
+		for(var i=0, j=listeners.length; i<j; ++i) {
+			if(typeof key == 'undefined' || listeners[i].key == key) {
+				listeners[i].func();
 			}
 		}
 	}

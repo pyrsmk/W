@@ -54,4 +54,4 @@ gulp.task('publish', shell.task([
 
 // ======================================== gulp
 
-gulp.task('default', ['build', 'publish']);
+gulp.task('default', ['build']);
