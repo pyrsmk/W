@@ -34,7 +34,7 @@ W.removeListener('key');
 W.clearListeners();
 ```
 
-For ease of use, when you register a listener you can chain `W` to reuse that very same function :
+For ease of use, when you register a listener W returns it, so you can reuse that very same callback :
 
 ```js
 $(window).listen('scroll', W.addListener(function() {
@@ -56,6 +56,15 @@ If needed, you can trigger your listeners on demand :
 W.trigger();
 // Trigger the 'key' listener
 W.trigger('key');
+```
+
+You can also manually trigger a listener once, since the callback is returned by W :
+
+```js
+W.addListener(function(){
+	// Blah blah
+})();
+```
 
 Caveats
 -------
