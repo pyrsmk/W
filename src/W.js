@@ -1,4 +1,4 @@
-/*! W 1.5.0 (https://github.com/pyrsmk/W) */
+/*! W 1.5.1 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
@@ -26,10 +26,10 @@ else{
 // Verify resizes every 10ms
 setInterval(function() {
 	if(trigger && document.documentElement.clientWidth) {
+		trigger = false;
 		for(var i=0, j=listeners.length; i<j; ++i) {
 			listeners[i].func();
 		}
-		trigger = false;
 	}
 }, 10);
 
@@ -39,7 +39,8 @@ function getOrientation() {
 		return !window.orientation ? 'portrait' : 'landscape';
 	}
 	else{
-		return document.documentElement.clientWidth > document.documentElement.clientHeight ? 'landscape' : 'portrait';
+		var viewport = detectViewport();
+		return viewport.width > viewport.height ? 'landscape' : 'portrait';
 	}
 }
 
