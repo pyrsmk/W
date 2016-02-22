@@ -1,8 +1,9 @@
-/*! W 1.5.1 (https://github.com/pyrsmk/W) */
+/*! W 1.5.2 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
-	trigger = false;
+	trigger = false,
+	ua = navigator.userAgent.toLowerCase();
 
 // Catch window resize event
 if(window.addEventListener) {
@@ -35,13 +36,22 @@ setInterval(function() {
 
 // Get screen orientation
 function getOrientation() {
+	var landscape;
 	if('orientation' in window) {
-		return !window.orientation ? 'portrait' : 'landscape';
+		var orientation = window.orientation;
+		if(/android/g.test(ua)) {
+			landscape = (orientation == 0 || orientation == 180);
+		}
+		else {
+			landscape = (orientation == 90 || orientation == -90);
+		}
 	}
-	else{
+	else {
+		// Probably only used by desktop browsers
 		var viewport = detectViewport();
-		return viewport.width > viewport.height ? 'landscape' : 'portrait';
+		landscape = viewport.width > viewport.height;
 	}
+	return landscape ? 'landscape' : 'portrait';
 }
 
 // Viewport resolution detection
@@ -56,7 +66,8 @@ function detectViewport(absolute) {
 		],
 		i, j;
 	// Detect right screen resolution from orientation
-	if(/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && getOrientation() == 'landscape') {
+	// (calling getOrientation() here can make an infinite loop, but iOS supports window.orientation so it's fine)
+	if(/(ipad|iphone|ipod)/g.test(ua) && getOrientation() == 'landscape') {
 		screen_width = screen.height;
 		screen_height = screen.width;
 		// Override window.innerWidth (generally equals to 980)
