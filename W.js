@@ -7,7 +7,7 @@
     root.W = factory();
   }
 }(this, function() {
-/*! W 1.5.1 (https://github.com/pyrsmk/W) */
+/*! W 1.6.0 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
@@ -44,36 +44,27 @@ setInterval(function() {
 
 // Get screen orientation
 function getOrientation() {
+	var landscape;
 	if('orientation' in window) {
-		return !window.orientation ? 'portrait' : 'landscape';
+		// Mobiles
+		var orientation = window.orientation;
+		landscape = (orientation == 90 || orientation == -90);
 	}
-	else{
-		var viewport = detectViewport();
-		return viewport.width > viewport.height ? 'landscape' : 'portrait';
+	else {
+		// Desktop browsers
+		landscape = window.innerWidth > window.innerHeight;
 	}
+	return landscape ? 'landscape' : 'portrait';
 }
 
 // Viewport resolution detection
 function detectViewport(absolute) {
-	// Prepare
-	var screen_width,
-		screen_height,
-		values = [
-			{width: screen.availWidth, height: screen.availHeight},
-			{width: window.outerWidth, height: window.outerHeight},
-			{width: window.innerWidth, height: window.innerHeight}
-		],
-		i, j;
-	// Detect right screen resolution from orientation
-	if(/(iPad|iPhone|iPod)/g.test(navigator.userAgent) && getOrientation() == 'landscape') {
+	// Detect screen size
+	var screen_width = screen.width,
+		screen_height = screen.height;
+	if(getOrientation() == 'landscape' && screen_width < screen_height) {
 		screen_width = screen.height;
 		screen_height = screen.width;
-		// Override window.innerWidth (generally equals to 980)
-		values[2].width = screen_width;
-	}
-	else{
-		screen_width = screen.width;
-		screen_height = screen.height;
 	}
 	// Absolute mode
 	if(absolute) {
@@ -84,29 +75,25 @@ function detectViewport(absolute) {
 	}
 	// Relative mode
 	else {
-		// Note found values
-		for(i=0, j=values.length; i<j; ++i) {
-			if(values[i].width > screen_width || values[i].height > screen_height || !values[i].width || !values[i].height) {
-				values[i].note = 0;
-			}
-			else {
-				values[i].note = (screen_width - values[i].width) + (screen_height - values[i].height);
-			}
+		var w = window.innerWidth,
+			h = window.innerHeight;
+		if(!w || !h || w > screen_width || h > screen_height || w == 980) {
+			w = window.outerWidth;
+			h = window.outerHeight;
 		}
-		// Sort notes
-		values.sort(function(a, b) {
-			return b.note - a.note;
-		});
-		// Return the better values
-		return {
-			width: values[0].width,
-			height: values[0].height
-		};
+		if(!w || !h || w > screen_width || h > screen_height) {
+			w = screen.availWidth;
+			h = screen.availHeight;
+		}
+		return {width: w, height: h};
 	}
 }
 
 // Define W object
 var W = {
+	getViewportDimensions: function(absolute) {
+		return detectViewport(absolute);
+	},
 	getViewportWidth: function(absolute) {
 		return detectViewport(absolute).width;
 	},
