@@ -1,9 +1,11 @@
 W 1.6.0
 =======
 
-CSS media queries are a powerful tool to deal with responsive designs : the browser handles design updates by itself. Unfortunately, in the javascript environment it's not the same. Browsers return different values for their viewport and no simple events exist to know when the user has resized his window or zoomed your site's contents. Moreover, media queries computing is based on the screen resolution and not the inner size of the window : design and contents should rely on the window to keep consistent, not on the screen (per example, on iOS8, an iPad2 returns `768x1024` in portrait AND lanscape mode).
+In responsive development with javascript, we often need to know the correct viewport size, without caring of the environment or the media orientation. Desktop browsers return correct values but mobiles are a big mess.
 
-W aims to solve these problems.
+Moreover, we need to know when the text has been resized or the media orientation has changed, so we can adapt our layout accordingly.
+
+W aims to solve this for you.
 
 Install
 -------
@@ -26,6 +28,8 @@ W.getOrientation();
 W.getViewportWidth();
 // Get the current viewport height
 W.getViewportHeight();
+// Get viewport dimensions; returns {width: integer, height: integer}
+W.getViewportDimensions();
 // Add a listener to catch responsive events (key is optional)
 W.addListener(function(){}, 'key');
 // Remove a listener
@@ -65,12 +69,6 @@ W.addListener(function(){
 	// Blah blah
 })();
 ```
-
-Caveats
--------
-
-- under iOS5 (and maybe 6), W will always return `portrait` as device orientation; the values that iOS return are really weird and I found no way to guess the orientation
-- zoom events won't change `em` unit in pixels; to be clear, `1em` will always equal to `16px` with zooms, the only way to have a change of this unit is by changing the global text size in the parameters of user's browser; that caveat just affect `px2em()`
 
 License
 -------
