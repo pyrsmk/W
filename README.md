@@ -30,7 +30,7 @@ W.getViewportWidth();
 W.getViewportHeight();
 // Get viewport dimensions; returns {width: integer, height: integer}
 W.getViewportDimensions();
-// Add a listener to catch responsive events (key is optional)
+// Add a listener to catch responsive events (key is optional) (you can register several listeners with the same keyword)
 W.addListener(function(){}, 'key');
 // Remove a listener
 W.removeListener('key');
@@ -58,11 +58,11 @@ If needed, you can trigger your listeners on demand :
 ```js
 // Trigger all listeners
 W.trigger();
-// Trigger the 'key' listener
+// Trigger all listeners registered with the 'key' keyword
 W.trigger('key');
 ```
 
-You can also manually trigger a listener once, since the callback is returned by W :
+You can also manually trigger a listener directly by calling it, since the callback is returned by W :
 
 ```js
 W.addListener(function(){
