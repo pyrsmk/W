@@ -1,4 +1,4 @@
-/*! W 1.6.0 (https://github.com/pyrsmk/W) */
+/*! W 1.6.1 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
@@ -6,18 +6,11 @@ var listeners = [],
 
 // Catch window resize event
 if(window.addEventListener) {
-	if('onorientationchange' in window) {
-		window.addEventListener('orientationchange', function(){
-			trigger = true;
-		}, false);
-	}
-	else{
-		window.addEventListener('resize', function(){
-			trigger = true;
-		}, false);
-	}
+	window.addEventListener('resize', function(){
+		trigger = true;
+	}, false);
 }
-else{
+else {
 	window.attachEvent('onresize', function() {
 		trigger = true;
 	});

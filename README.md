@@ -1,4 +1,4 @@
-W 1.6.0
+W 1.6.1
 =======
 
 In responsive development with javascript, we often need to know the correct viewport size, without caring of the environment or the media orientation. Desktop browsers return correct values but mobiles are a big mess.
