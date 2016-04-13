@@ -7,28 +7,46 @@
     root.W = factory();
   }
 }(this, function() {
-/*! W 1.6.1 (https://github.com/pyrsmk/W) */
+/*! W 1.6.2 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
-	trigger = false;
+	resize_trigger = false,
+	orientationchange = false,
+	orientationchange_trigger = false;
 
 // Catch window resize event
 if(window.addEventListener) {
-	window.addEventListener('resize', function(){
-		trigger = true;
+	if('onorientationchange' in window) {
+		orientationchange = true;
+		window.addEventListener('orientationchange', function() {
+			orientationchange_trigger = true;
+		}, false);
+	}
+	window.addEventListener('resize', function() {
+		resize_trigger = true;
 	}, false);
 }
-else {
+else{
 	window.attachEvent('onresize', function() {
-		trigger = true;
+		resize_trigger = true;
 	});
 }
 
 // Verify resizes every 10ms
 setInterval(function() {
+	var trigger = false;
+	if(orientationchange) {
+		if(orientationchange_trigger && resize_trigger) {
+			trigger = true;
+		}
+	}
+	else if(resize_trigger) {
+		trigger = true;
+	}
 	if(trigger && document.documentElement.clientWidth) {
-		trigger = false;
+		orientationchange_trigger = false;
+		resize_trigger = false;
 		for(var i=0, j=listeners.length; i<j; ++i) {
 			listeners[i].func();
 		}
