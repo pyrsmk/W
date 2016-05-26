@@ -1,7 +1,7 @@
 {
   "name": "pyrsmk-w",
   "description": "Responsive viewport management tool",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "author": "Aurélien Delogu <pyrsmk@dreamysource.fr> (http://dreamysource.fr)",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "url": "https://github.com/pyrsmk/W/issues",
     "email": "dev@dreamysource.fr"
   },
-  "homepage": "http://dreamysource.fr/product/W",
+  "homepage": "http://dreamysource.io/project/w",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-jshint": "^1.11.0",

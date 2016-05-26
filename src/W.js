@@ -1,4 +1,4 @@
-/*! W 1.6.2 (https://github.com/pyrsmk/W) */
+/*! W 1.6.3 (https://github.com/pyrsmk/W) */
 
 // Prepare
 var listeners = [],
