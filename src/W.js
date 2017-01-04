@@ -1,5 +1,3 @@
-/*! W 1.6.3 (https://github.com/pyrsmk/W) */
-
 // Prepare
 var listeners = [],
 	resize_trigger = false,

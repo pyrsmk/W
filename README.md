@@ -1,4 +1,4 @@
-W 1.6.3
+W 1.7.0
 =======
 
 In responsive development with javascript, we often need to know the correct viewport size, without caring of the environment or the media orientation. Desktop browsers return correct values but mobiles are a big mess.
@@ -15,7 +15,6 @@ You can pick the minified library or install it with :
 ```
 npm install pyrsmk-w
 bower install pyrsmk-w
-jam install pyrsmk-w
 ```
 
 Syntax
