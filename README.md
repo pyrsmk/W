@@ -7,7 +7,7 @@ Moreover, we need to know when the text has been resized or the media orientatio
 
 W aims to solve this for you.
 
-Note that, to support mobile devices well, you should use this meta markup : `<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">`.
+Please note that if you want to support mobile devices well I advise you to use this meta markup : `<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">`. This line of code should really be present in any website.
 
 Install
 -------
